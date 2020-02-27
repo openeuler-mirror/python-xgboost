@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        1
+Release:        2
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
@@ -51,6 +51,7 @@ install -m 755 -d %{buildroot}/usr/xgboost
 install lib/libxgboost.so %{buildroot}/usr/xgboost
 popd
 %py3_install
+find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin/python3\1!' {} \;
 
 %check
 
@@ -61,8 +62,8 @@ popd
 %{python3_sitelib}/%{pypi_name}/
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
-
-
 %changelog
+* Thu Feb 27 2020 lijin Yang <yanglijin@huawei.com> - 0.90-2
+- remove dependency of python2
 * Thu Nov 7 2019 mengxian <mengxian@huawei.com> - 0.90-1
 - Init package
