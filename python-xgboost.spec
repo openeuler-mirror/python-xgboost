@@ -3,12 +3,12 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        2
+Release:        3
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
 Source0:        https://files.pythonhosted.org/packages/96/84/4e2cae6247f397f83d8adc5c2a2a0c5d7d790a14a4c7400ff6574586f589/%{pypi_name}-%{version}.tar.gz
-BuildRequires:  python3-devel
+BuildRequires:  python3-devel gcc-c++
 Requires:       dejavu-fonts-common dejavu-sans-fonts libgfortran
 Requires:       openblas openblas-serial openblas-threads
 Requires:       python3-numpy python3-numpy-f2py python3-scipy
@@ -63,6 +63,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Wed Jun 23 2021 wuchaochao <wuchaochao4@huawei.com> - 0.90-3
+- add buildrequires: gcc-c++
+
 * Thu Feb 27 2020 lijin Yang <yanglijin@huawei.com> - 0.90-2
 - remove dependency of python2
 * Thu Nov 7 2019 mengxian <mengxian@huawei.com> - 0.90-1
