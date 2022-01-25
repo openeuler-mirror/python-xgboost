@@ -1,0 +1,11 @@
+--- a/xgboost/make/config.mk	2019-05-21 05:32:11.000000000 +0800
++++ b/xgboost/make/config.mk	2022-01-21 17:26:44.096537200 +0800
+@@ -43,7 +43,7 @@
+ # Settings for power and arm arch
+ #----------------------------
+ ARCH := $(shell uname -a)
+-ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64))
++ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64 riscv64))
+ 	USE_SSE=0
+ else
+ 	USE_SSE=1
