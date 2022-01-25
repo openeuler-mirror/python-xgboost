@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        3
+Release:        4
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
@@ -16,6 +16,7 @@ Requires:       fontconfig fontpackages-filesystem
 Requires:       libX11 libXau libXft libXrender libxcb
 Requires:       openEuler-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
+Patch01:       disable-sse-for-riscv.patch
 
 %global _description \
 XGBoost is an optimized distributed gradient boosting library designed to be \
@@ -35,7 +36,7 @@ Summary:        %{summary}
 %description -n python3-%{pypi_name} %{_description}
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version} -p1
 
 %build
 pushd %{pypi_name}
@@ -63,6 +64,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Mon Jan 24 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 0.90-4
+- do not use sse for riscv
+
 * Wed Jun 23 2021 wuchaochao <wuchaochao4@huawei.com> - 0.90-3
 - add buildrequires: gcc-c++
 
