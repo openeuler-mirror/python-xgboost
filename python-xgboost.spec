@@ -3,9 +3,9 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        4
+Release:        5
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
-License:        Apache-2
+License:        Apache-2.0
 URL:            https://github.com/dmlc/xgboost
 Source0:        https://files.pythonhosted.org/packages/96/84/4e2cae6247f397f83d8adc5c2a2a0c5d7d790a14a4c7400ff6574586f589/%{pypi_name}-%{version}.tar.gz
 BuildRequires:  python3-devel gcc-c++
@@ -64,6 +64,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Wed May 18 2022 liukuo <liukuo@kylinos.cn> - 0.90-5
+- License compliance rectification
+
 * Mon Jan 24 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 0.90-4
 - do not use sse for riscv
 
