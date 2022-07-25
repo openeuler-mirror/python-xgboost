@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        5
+Release:        6
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2.0
 URL:            https://github.com/dmlc/xgboost
@@ -60,10 +60,13 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{_bindir}/xgboost
 /usr/xgboost
 %doc README.rst
-%{python3_sitelib}/%{pypi_name}/
-%{python3_sitelib}/%{pypi_name}-*.egg-info/
+%{python3_sitearch}/%{pypi_name}/
+%{python3_sitearch}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Mon Jul 25 2022 caodongxia <caodongxia@h-partners.com> - 0.90-6
+- Use python3_sitearch instead of python3_sitelib
+
 * Wed May 18 2022 liukuo <liukuo@kylinos.cn> - 0.90-5
 - License compliance rectification
 
