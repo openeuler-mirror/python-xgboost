@@ -1,9 +1,10 @@
 %global pypi_name xgboost
+%global vendor %{?_vendor:%{_vendor}}%{!?_vendor:openEuler}
 %define _debugsource_template %{nil}
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        4
+Release:        5
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
@@ -14,7 +15,7 @@ Requires:       openblas openblas-serial openblas-threads
 Requires:       python3-numpy python3-numpy-f2py python3-scipy
 Requires:       fontconfig fontpackages-filesystem
 Requires:       libX11 libXau libXft libXrender libxcb
-Requires:       openEuler-rpm-config
+Requires:       %{vendor}-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
 Patch01:       disable-sse-for-riscv.patch
 
@@ -64,6 +65,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Thu Nov 17 2022 caodongxia <caodongxia@h-partners.com> - 0.90-5
+- Replace openEuler with vendor macro
+
 * Mon Jan 24 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 0.90-4
 - do not use sse for riscv
 
