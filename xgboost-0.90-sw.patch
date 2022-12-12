@@ -1,0 +1,12 @@
+diff -Naur xgboost-0.90-bak/xgboost/make/config.mk xgboost-0.90/xgboost/make/config.mk
+--- xgboost-0.90-bak/xgboost/make/config.mk	2022-08-03 06:42:28.995405640 +0000
++++ xgboost-0.90/xgboost/make/config.mk	2022-08-03 09:00:33.451430520 +0000
+@@ -43,7 +43,7 @@
+ # Settings for power and arm arch
+ #----------------------------
+ ARCH := $(shell uname -a)
+-ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64 riscv64))
++ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64 riscv64 sw_64))
+ 	USE_SSE=0
+ else
+ 	USE_SSE=1
