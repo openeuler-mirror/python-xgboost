@@ -17,7 +17,11 @@ Requires:       libX11 libXau libXft libXrender libxcb
 Requires:       openEuler-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
 Patch01:        disable-sse-for-riscv.patch
+
+%ifarch sw_64
 Patch02:        xgboost-0.90-sw.patch
+%endif
+
 %global _description \
 XGBoost is an optimized distributed gradient boosting library designed to be \
 highly efficient, flexible and portable. It implements machine learning \
