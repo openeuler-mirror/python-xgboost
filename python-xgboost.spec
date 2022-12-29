@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        6
+Release:        7
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2.0
 URL:            https://github.com/dmlc/xgboost
@@ -14,7 +14,7 @@ Requires:       openblas openblas-serial openblas-threads
 Requires:       python3-numpy python3-numpy-f2py python3-scipy
 Requires:       fontconfig fontpackages-filesystem
 Requires:       libX11 libXau libXft libXrender libxcb
-Requires:       openEuler-rpm-config
+Requires:       %{_vendor}-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
 Patch01:       disable-sse-for-riscv.patch
 
@@ -64,6 +64,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitearch}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Thu Dec 22 2022 wanglin <wangl29@chinatelecom.cn> - 0.90-7
+- Fix rpm-config hard code problem
+
 * Mon Jul 25 2022 caodongxia <caodongxia@h-partners.com> - 0.90-6
 - Use python3_sitearch instead of python3_sitelib
 
