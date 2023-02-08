@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        5
+Release:        6
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
@@ -17,6 +17,7 @@ Requires:       libX11 libXau libXft libXrender libxcb
 Requires:       openEuler-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
 Patch01:        disable-sse-for-riscv.patch
+Patch02:	0001-disable-sse-for-loongarch64.patch
 
 %ifarch sw_64
 Patch02:        xgboost-0.90-sw.patch
@@ -68,6 +69,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Mon Feb 6 2023 Wenlong Zhang <zhangwenlong@loongson.cn> - 0.90-6
+- disable sse for loongarch64
+ 
 * Mon Dec 12 2022 guojiancheng <jiancheng.guo@i-soft.com.cn> - 0.90-5
 - Add sw patch
 
