@@ -1,0 +1,25 @@
+From 1c07b6c0a9dd62493b7bece0ff9dba1c1606fe32 Mon Sep 17 00:00:00 2001
+From: Wenlong Zhang <zhangwenlong@loongson.cn>
+Date: Wed, 8 Feb 2023 15:47:15 +0800
+Subject: [PATCH] disable sse for loongarch64
+
+---
+ xgboost/make/config.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xgboost/make/config.mk b/xgboost/make/config.mk
+index 6780eb1..ff2f21b 100644
+--- a/xgboost/make/config.mk
++++ b/xgboost/make/config.mk
+@@ -43,7 +43,7 @@ USE_AZURE = 0
+ # Settings for power and arm arch
+ #----------------------------
+ ARCH := $(shell uname -a)
+-ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64 riscv64))
++ifneq (,$(filter $(ARCH), armv6l armv7l powerpc64le ppc64le aarch64 riscv64 loongarch64))
+ 	USE_SSE=0
+ else
+ 	USE_SSE=1
+-- 
+2.33.0
+
