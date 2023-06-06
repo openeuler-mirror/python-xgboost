@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        5
+Release:        6
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2
 URL:            https://github.com/dmlc/xgboost
@@ -41,6 +41,7 @@ Summary:        %{summary}
 
 %build
 pushd %{pypi_name}
+sed -i "s/(PLUGIN_CFLAGS)/(PLUGIN_CFLAGS) -fPIE -pie/g" Makefile
 %make_build
 popd
 %py3_build
@@ -65,6 +66,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Tue Jun 06 2023 chenchen <chen_aka_jan@163.com> - 0.90-6
+- add PIE compiler option
+
 * Thu Nov 17 2022 caodongxia <caodongxia@h-partners.com> - 0.90-5
 - Replace openEuler with vendor macro
 
