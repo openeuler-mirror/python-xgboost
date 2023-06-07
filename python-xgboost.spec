@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        8
+Release:        9
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2.0
 URL:            https://github.com/dmlc/xgboost
@@ -41,6 +41,7 @@ Summary:        %{summary}
 
 %build
 pushd %{pypi_name}
+sed -i "s/(PLUGIN_CFLAGS)/(PLUGIN_CFLAGS) -fPIE -pie/g" Makefile
 %make_build
 popd
 %py3_build
@@ -65,6 +66,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitearch}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Wed Jun 07 2023 chenchen <chen_aka_jan@163.com> - 0.90-9
+- add PIE compiler option
+
 * Sat Mar 04 2023 Wenlong Zhang<zhangwenlong@loongson.cn> - 0.90-8
 - disable sse for loongarch64
 
