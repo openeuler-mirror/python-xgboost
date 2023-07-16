@@ -1,0 +1,48 @@
+diff -u -r xgboost-0.90/xgboost/dmlc-core/CMakeLists.txt xgboost-0.90/xgboost/dmlc-core/CMakeLists.txt
+--- xgboost-0.90/xgboost/dmlc-core/CMakeLists.txt	2019-05-21 05:32:11.000000000 +0800
++++ xgboost-0.90/xgboost/dmlc-core/CMakeLists.txt	2023-07-16 16:27:58.000000000 +0800
+@@ -16,7 +16,7 @@
+ dmlccore_option(USE_HDFS "Build with HDFS support" OFF)
+ dmlccore_option(USE_AZURE "Build with AZURE support" OFF)
+ dmlccore_option(USE_S3 "Build with S3 support" OFF)
+-dmlccore_option(USE_OPENMP "Build with OpenMP" ON)
++dmlccore_option(USE_OPENMP "Build with OpenMP" OFF)
+ dmlccore_option(USE_CXX14_IF_AVAILABLE "Build with C++14 if the compiler supports it" OFF)
+ dmlccore_option(GOOGLE_TEST "Build google tests" OFF)
+ dmlccore_option(INSTALL_DOCUMENTATION "Install documentation" OFF)
+diff -u -r xgboost-0.90/xgboost/make/config.mk xgboost-0.90/xgboost/make/config.mk
+--- xgboost-0.90/xgboost/make/config.mk	2019-05-21 05:32:11.000000000 +0800
++++ xgboost-0.90/xgboost/make/config.mk	2023-07-16 16:32:42.000000000 +0800
+@@ -28,7 +28,7 @@
+ ADD_CFLAGS =
+ 
+ # Whether enable openmp support, needed for multi-threading.
+-USE_OPENMP = 1
++USE_OPENMP = 0
+ 
+ # whether use HDFS support during compile
+ USE_HDFS = 0
+diff -u -r xgboost-0.90/xgboost/make/minimum_parallel.mk xgboost-0.90/xgboost/make/minimum_parallel.mk
+--- xgboost-0.90/xgboost/make/minimum_parallel.mk	2019-05-21 05:32:11.000000000 +0800
++++ xgboost-0.90/xgboost/make/minimum_parallel.mk	2023-07-16 16:33:01.000000000 +0800
+@@ -6,7 +6,7 @@
+ #------------------------------------------------------------------------
+ 
+ # Whether enable openmp support, needed for multi-threading.
+-USE_OPENMP = 1
++USE_OPENMP = 0
+ 
+ # whether use HDFS support during compile
+ USE_HDFS = 0
+diff -u -r xgboost-0.90/xgboost/make/travis.mk xgboost-0.90/xgboost/make/travis.mk
+--- xgboost-0.90/xgboost/make/travis.mk	2019-05-21 05:32:11.000000000 +0800
++++ xgboost-0.90/xgboost/make/travis.mk	2023-07-16 16:33:09.000000000 +0800
+@@ -6,7 +6,7 @@
+ ADD_CFLAGS =
+ 
+ # Whether enable openmp support, needed for multi-threading.
+-USE_OPENMP = 1
++USE_OPENMP = 0
+ 
+ # whether use HDFS support during compile
+ USE_HDFS = 0
