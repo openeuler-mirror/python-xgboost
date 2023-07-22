@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.90
-Release:        7
+Release:        8
 Summary:        Scalable, Portable and Distributed Gradient Boosting Library
 License:        Apache-2.0
 URL:            https://github.com/dmlc/xgboost
@@ -17,6 +17,9 @@ Requires:       libX11 libXau libXft libXrender libxcb
 Requires:       %{_vendor}-rpm-config
 Requires:       python3-devel python3-rpm-generators tk
 Patch01:       disable-sse-for-riscv.patch
+%if "%toolchain" == "clang"
+Patch02:       fix-clang.patch
+%endif
 
 %global _description \
 XGBoost is an optimized distributed gradient boosting library designed to be \
@@ -64,6 +67,9 @@ find %{buildroot} -name "*.py" -exec sed -i -r 's!/usr/bin/python(\s|$)!/usr/bin
 %{python3_sitearch}/%{pypi_name}-*.egg-info/
 
 %changelog
+* Sun Jul 16 2023 yoo <sunyuechi@iscas.ac.cn> - 0.90-8
+- fix clang build error
+
 * Thu Dec 22 2022 wanglin <wangl29@chinatelecom.cn> - 0.90-7
 - Fix rpm-config hard code problem
 
